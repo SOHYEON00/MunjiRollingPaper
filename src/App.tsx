@@ -1,11 +1,11 @@
 import React, { Suspense } from "react";
 import "./App.css";
-import DefaultLayout from "common/Layout/DefaultLayout";
+import Router from "route/Router";
 
 function App() {
   return (
-    <Suspense>
-      <DefaultLayout></DefaultLayout>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Router />
     </Suspense>
   );
 }
