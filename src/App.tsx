@@ -1,12 +1,13 @@
-import React, { Suspense } from "react";
+import React from "react";
 import "./App.css";
 import Router from "route/Router";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <BrowserRouter>
       <Router />
-    </Suspense>
+    </BrowserRouter>
   );
 }
 

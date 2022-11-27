@@ -5,6 +5,8 @@ interface PathType {
   url: string;
   title: string;
   Component?: LazyExoticComponent<React.ComponentType>;
+  isBack?: boolean;
+  isNew?: boolean;
 }
 
 export enum PathTitles {
@@ -22,8 +24,10 @@ export const paths: PathType[] = [
   {
     key: PathTitles.Main,
     title: PathTitles.Main,
-    url: "/:id",
+    url: "/main",
     Component: lazy(() => import("../pages/Main/Main")),
+    isBack: true,
+    isNew: true,
   },
 ];
 
@@ -43,4 +47,24 @@ export const replaceParam = (
   });
 
   return newUrl;
+};
+
+export const GetHeaderInfo = (
+  url: string
+): { isBackIcon: boolean; isNewBtn: boolean } => {
+  const result = {
+    isBackIcon: false,
+    isNewBtn: false,
+  };
+
+  const currentPath = paths.filter((path) => path.url === url);
+
+  if (currentPath.length > 0) {
+    const currentPathItem = currentPath[0];
+
+    result.isBackIcon = currentPathItem.isBack ?? false;
+    result.isNewBtn = currentPathItem.isNew ?? false;
+  }
+
+  return result;
 };
