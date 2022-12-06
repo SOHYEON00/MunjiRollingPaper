@@ -1,0 +1,34 @@
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ededed;
+  height: 80px;
+
+  .goBackBtnWrapper {
+    width: 110px;
+    display: flex;
+    align-items: center;
+
+    button {
+      width: 50px;
+      background: none;
+      border: none;
+    }
+
+    img {
+      width: 40px;
+      height: auto;
+    }
+  }
+
+  .Title {
+    font-size: 30px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .createBtn {
+    height: 45px;
+  }
+}
