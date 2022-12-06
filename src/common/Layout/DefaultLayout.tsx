@@ -1,9 +1,10 @@
+import Header from "common/components/Header/Header";
 import * as React from "react";
-import Header from "./Header";
+import styles from "./DefaultLayout.module.scss";
 
 const DefaultLayout = ({ children }: React.PropsWithChildren) => {
   return (
-    <section className={"container md"}>
+    <section className={styles.DefaultLayout}>
       <Header />
       {children}
     </section>
