@@ -16,15 +16,15 @@ export enum PathTitles {
 
 export const paths: PathType[] = [
   {
-    key: PathTitles.Landing,
+    key: "/",
     title: PathTitles.Landing,
     url: "/",
     Component: lazy(() => import("../pages/Landing/Landing")),
   },
   {
-    key: PathTitles.Main,
+    key: "/:id",
     title: PathTitles.Main,
-    url: "/main",
+    url: "/:id",
     Component: lazy(() => import("../pages/Main/Main")),
     isBack: true,
     isNew: true,

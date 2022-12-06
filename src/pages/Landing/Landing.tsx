@@ -1,27 +1,48 @@
-import { Button, Input } from "antd";
+import { Button, Input, Modal } from "antd";
 import * as React from "react";
 import styles from "./Landing.module.scss";
 import { debounce } from "lodash";
-import { usePopupManager } from "react-popup-manager";
-import CustomModal from "common/components/CustomModal/CustomModal";
+import { createNewUser } from "queries/firebaseQuery";
+import { useNavigate } from "react-router-dom";
+import { PathTitles, replaceParam } from "route/path";
 
 const Landing = () => {
-  const { open } = usePopupManager();
   const [name, setName] = React.useState<string>("");
+  const navigate = useNavigate();
 
   /* Event Handler */
-  const onCreateRP = React.useCallback(() => {
+  const onCreateRP = React.useCallback(async () => {
     if (!!name) {
-      open(CustomModal, {
-        contents: <div>롤링페이퍼 생성이 완료되었습니다.</div>,
-        okText: "작성하기",
-      });
+      const result = (await createNewUser(name)) as any;
+
+      if (result?.id) {
+        Modal.confirm({
+          content: <div>롤링페이퍼 생성이 완료되었습니다.</div>,
+          okText: "작성하기",
+          icon: undefined,
+          onOk: () => {
+            navigate(replaceParam(PathTitles.Main, [":id"], [result.id]));
+          },
+        });
+      } else {
+        OpenErrorModal(
+          "롤링페이퍼 생성이 미완료 되었습니다. 다시 시도해주세요"
+        );
+      }
     } else {
-      open(CustomModal, {
-        contents: <div>이름을 입력해주세요.</div>,
-      });
+      OpenErrorModal("이름을 입력해주세요.");
     }
   }, [name]);
+
+  const OpenErrorModal = React.useCallback((contents: string) => {
+    Modal.error({
+      content: (
+        <>
+          <div>{contents}</div>
+        </>
+      ),
+    });
+  }, []);
 
   const onSetName = React.useCallback((e) => {
     const { value } = e.target;
