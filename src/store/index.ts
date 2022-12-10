@@ -1,23 +1,22 @@
 import create, { GetState, SetState, StoreApi } from "zustand";
 import { devtools } from "zustand/middleware";
-import { IUserSlice, userSlice } from "./userSlice";
+import { IMemoSlice, memoSlice } from "./memoSlice";
 
 export interface IStore {
-  userInfo: IUserSlice;
+  memo: IMemoSlice;
 }
 
 export const useStore = create(
   devtools<IStore>((set, get, api) => ({
-    userInfo: {
-      ...userSlice(
-        set as unknown as SetState<IUserSlice>,
-        get as unknown as GetState<IUserSlice>,
-        api as unknown as StoreApi<IUserSlice>
+    memo: {
+      ...memoSlice(
+        set as unknown as SetState<IMemoSlice>,
+        get as unknown as GetState<IMemoSlice>,
+        api as unknown as StoreApi<IMemoSlice>
       ),
     },
   }))
 );
 
 export default useStore;
-
-export const useUser = () => useStore((store: IStore) => store.userInfo.user);
+export const useColor = () => useStore((store: IStore) => store.memo.color);
