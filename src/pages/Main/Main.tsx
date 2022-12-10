@@ -5,7 +5,7 @@ import { getCurrentUser } from "queries/firebaseQuery";
 import * as React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPath, PathTitles } from "route/path";
-import { User } from "store/userSlice";
+import { User } from "store/memoSlice";
 import styles from "./Main.module.scss";
 
 const Main = () => {
@@ -31,8 +31,8 @@ const Main = () => {
   /* ************** Event functions ************** */
 
   const onCreateNewMemo = React.useCallback(() => {
-    // navigate(getPath(PathTitles.Landing));
-  }, []);
+    navigate(`/main/memo/${params.id}`);
+  }, [params.id]);
 
   const onCreateNewRP = React.useCallback(() => {
     navigate(getPath(PathTitles.Landing));

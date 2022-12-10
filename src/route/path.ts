@@ -13,6 +13,8 @@ interface PathType {
 export enum PathTitles {
   Landing = "Landing",
   Main = "Main",
+  Memo = "Memo",
+  Contents = "Contents",
 }
 
 export const paths: PathType[] = [
@@ -31,10 +33,16 @@ export const paths: PathType[] = [
     Component: lazy(() => import("../pages/Main/Main")),
   },
   {
-    key: "/main/:id",
-    title: PathTitles.Main,
-    url: "/main/:id",
-    Component: lazy(() => import("../pages/Main/Main")),
+    key: "/main/memo/:id",
+    title: PathTitles.Memo,
+    url: "/main/memo/:id",
+    Component: lazy(() => import("../pages/SelectMemo/SelectMemo")),
+  },
+  {
+    key: "/main/memo/contents/:id",
+    title: PathTitles.Contents,
+    url: "/main/memo/contents/:id",
+    Component: lazy(() => import("../pages/Contents/Contents")),
   },
 ];
 
@@ -77,7 +85,6 @@ export const GetHeaderInfo = (
 
     if (currentPath.length > 0) {
       const currentPathItem = currentPath[0];
-      console.log(currentPathItem);
       result.isBackIcon = currentPathItem.isBack ?? true;
       result.isNewBtn = currentPathItem.isNew ?? true;
     }
