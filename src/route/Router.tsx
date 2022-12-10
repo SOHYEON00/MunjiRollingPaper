@@ -9,7 +9,7 @@ const Router = () => {
   return (
     <PopupProvider>
       <DefaultLayout>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div></div>}>
           <Routes>
             {paths.map((path) => {
               const { Component, url, key } = path;

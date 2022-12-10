@@ -1,0 +1,20 @@
+.Wrapper {
+  height: 90%;
+
+  .imgWrapper {
+    height: 70%;
+    display: flex;
+  }
+
+  .infoMsgWrapper {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .createBtnWrapper {
+    text-align: center;
+  }
+}

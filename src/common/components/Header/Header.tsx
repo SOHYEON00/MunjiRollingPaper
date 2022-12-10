@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { GetHeaderInfo } from "route/path";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { GetHeaderInfo, getPath, PathTitles } from "route/path";
 import BackIcon from "images/back_icon.png";
 import { Button } from "antd";
 import styles from "./Header.module.scss";
@@ -8,10 +8,16 @@ import styles from "./Header.module.scss";
 const Header = memo((props) => {
   const location = useLocation();
   const navigation = useNavigate();
-  const { isBackIcon, isNewBtn } = GetHeaderInfo(location.pathname);
+  const params = useParams();
+
+  const { isBackIcon, isNewBtn } = GetHeaderInfo(location.pathname, params);
 
   const onGoBack = useCallback(() => {
     navigation(-1);
+  }, []);
+
+  const onCreate = useCallback(() => {
+    navigation(getPath(PathTitles.Landing));
   }, []);
 
   return (
@@ -24,7 +30,11 @@ const Header = memo((props) => {
         </div>
       )}
       <div className={styles.Title}>Munji Rolling Paper</div>
-      {isNewBtn && <Button className={styles.createBtn}>생성하기</Button>}
+      {isNewBtn && (
+        <Button className={styles.createBtn} onClick={onCreate}>
+          생성하기
+        </Button>
+      )}
     </section>
   );
 });

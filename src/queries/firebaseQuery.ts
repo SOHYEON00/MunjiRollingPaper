@@ -1,4 +1,10 @@
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getFirestore,
+} from "firebase/firestore";
 import { app, storage } from "./firebaseConfig";
 import { v4 as uuidv4 } from "uuid";
 import { getDownloadURL, ref } from "firebase/storage";
@@ -19,6 +25,16 @@ export const createNewUser = async (name: string) => {
   } catch (e) {
     console.log(e);
     return e;
+  }
+};
+
+export const getCurrentUser = async (id: string) => {
+  try {
+    const docRef = doc(firebaseDB, "users", id);
+    const docSnap = await getDoc(docRef);
+    return docSnap.data();
+  } catch (e) {
+    console.log("Fail to Get Current User", e);
   }
 };
 
