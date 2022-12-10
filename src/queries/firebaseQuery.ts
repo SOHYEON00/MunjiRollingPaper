@@ -4,6 +4,7 @@ import {
   doc,
   getDoc,
   getFirestore,
+  setDoc,
 } from "firebase/firestore";
 import { app, storage } from "./firebaseConfig";
 import { v4 as uuidv4 } from "uuid";
@@ -35,6 +36,20 @@ export const getCurrentUser = async (id: string) => {
     return docSnap.data();
   } catch (e) {
     console.log("Fail to Get Current User", e);
+  }
+};
+
+export const setUserImage = async (
+  id: string,
+  newInfo: Record<string, string>
+) => {
+  try {
+    const docRef = doc(firebaseDB, "users", id);
+    const setData = await setDoc(docRef, newInfo, { merge: true });
+
+    console.log(setData);
+  } catch (e) {
+    console.log("Fail to Set User Info", e);
   }
 };
 

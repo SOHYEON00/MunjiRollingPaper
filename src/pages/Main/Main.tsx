@@ -5,12 +5,14 @@ import { getCurrentUser } from "queries/firebaseQuery";
 import * as React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPath, PathTitles } from "route/path";
+import useStore, { IStore } from "store";
 import { User } from "store/memoSlice";
 import styles from "./Main.module.scss";
 
 const Main = () => {
   const params = useParams();
   const navigate = useNavigate();
+  const setStoreUser = useStore((store: IStore) => store.memo.setUser);
 
   const [user, setUser] = React.useState<User>(undefined);
 
@@ -24,7 +26,8 @@ const Main = () => {
 
   const getUser = async (name: string) => {
     const result = (await getCurrentUser(name)) as User;
-    setUser(result);
+    setUser({ ...result, id: name });
+    setStoreUser(result);
     return result;
   };
 
