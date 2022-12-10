@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #ededed;
-  height: 80px;
+  height: 10%;
 
   .goBackBtnWrapper {
     width: 110px;
@@ -30,5 +30,7 @@
 
   .createBtn {
     height: 45px;
+    margin-right: 5px;
+    height: 35px;
   }
 }

@@ -9,6 +9,7 @@ import CustomModal from "common/components/CustomModal/CustomModal";
 import { getDefaultsImage, saveLocalStorage } from "share/utils";
 import { getDownloadURL, ref } from "firebase/storage";
 import { storage } from "queries/firebaseConfig";
+import Header from "common/components/Header/Header";
 
 const DEFAULT1 = "default1.png";
 const DEFAULT2 = "default2.png";
@@ -48,14 +49,22 @@ const Landing = () => {
   }, []);
 
   async function getDefaults(name: string, callback: (url: string) => void) {
-    const url = await getDownloadURL(ref(storage, `${storagePath}${name}`));
-    callback(url);
-    return url;
+    try {
+      const url = await getDownloadURL(ref(storage, `${storagePath}${name}`));
+      callback(url);
+      return url;
+    } catch (e) {
+      console.log("Fail to Get Default Image 1");
+    }
   }
 
   function getLSImage(name: string) {
-    const result = getDefaultsImage(name);
-    return result || "";
+    try {
+      const result = getDefaultsImage(name);
+      return result || "";
+    } catch (e) {
+      console.log("Fail to Get Default Image 2");
+    }
   }
 
   /* Event Handler */
@@ -99,43 +108,48 @@ const Landing = () => {
   const debounceSetName = debounce((value: string) => setName(value), 300);
 
   return (
-    <section className={styles.LandingPage}>
-      <div className={styles.imgWrapper}>
-        <img
-          className={styles.defaultImg1}
-          src={image1}
-          alt="sticker set1"
-          height={100}
-        />
-        <img
-          className={styles.defaultImg2}
-          src={image2}
-          alt="sticker set2"
-          height={100}
-        />
-        <img
-          className={styles.defaultImg1}
-          src={image1}
-          alt="sticker set1"
-          height={100}
-        />
-        <img
-          className={styles.defaultImg2}
-          src={image2}
-          alt="sticker set2"
-          height={100}
-        />
-      </div>
-      <div className={styles.buttonWrapper}>
-        <div className={styles.inputWrapper}>
-          <Input onChange={onSetName} width={150} className={styles.input} />{" "}
-          님에게
+    <>
+      <Header />
+      <section className={styles.LandingPage}>
+        {(image1 || image2) && (
+          <div className={styles.imgWrapper}>
+            <img
+              className={styles.defaultImg1}
+              src={image1}
+              alt="sticker set1"
+              height={100}
+            />
+            <img
+              className={styles.defaultImg2}
+              src={image2}
+              alt="sticker set2"
+              height={100}
+            />
+            <img
+              className={styles.defaultImg1}
+              src={image1}
+              alt="sticker set1"
+              height={100}
+            />
+            <img
+              className={styles.defaultImg2}
+              src={image2}
+              alt="sticker set2"
+              height={100}
+            />
+          </div>
+        )}
+        <div className={styles.buttonWrapper}>
+          <div className={styles.inputWrapper}>
+            <Input onChange={onSetName} width={150} className={styles.input} />{" "}
+            님에게
+          </div>
+          <Button className={styles.button} onClick={onCreateRP}>
+            롤링페이퍼 생성하기
+          </Button>
         </div>
-        <Button className={styles.button} onClick={onCreateRP}>
-          롤링페이퍼 생성하기
-        </Button>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

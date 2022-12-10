@@ -1,4 +1,5 @@
 import React, { lazy, LazyExoticComponent } from "react";
+import { matchPath, matchRoutes } from "react-router-dom";
 
 interface PathType {
   key: string;
@@ -20,14 +21,20 @@ export const paths: PathType[] = [
     title: PathTitles.Landing,
     url: "/",
     Component: lazy(() => import("../pages/Landing/Landing")),
+    isNew: false,
+    isBack: false,
   },
   {
     key: "/main/:id",
     title: PathTitles.Main,
     url: "/main/:id",
     Component: lazy(() => import("../pages/Main/Main")),
-    isBack: true,
-    isNew: true,
+  },
+  {
+    key: "/main/:id",
+    title: PathTitles.Main,
+    url: "/main/:id",
+    Component: lazy(() => import("../pages/Main/Main")),
   },
 ];
 
@@ -50,20 +57,30 @@ export const replaceParam = (
 };
 
 export const GetHeaderInfo = (
-  url: string
+  url: string,
+  params: any
 ): { isBackIcon: boolean; isNewBtn: boolean } => {
   const result = {
     isBackIcon: false,
     isNewBtn: false,
   };
 
-  const currentPath = paths.filter((path) => path.url === url);
+  if (url && params) {
+    const keys = Object.keys(params);
+    let originUrl = url;
 
-  if (currentPath.length > 0) {
-    const currentPathItem = currentPath[0];
+    keys.forEach(
+      (key) => (originUrl = originUrl.replace(params[key], `:${key}`))
+    );
 
-    result.isBackIcon = currentPathItem.isBack ?? false;
-    result.isNewBtn = currentPathItem.isNew ?? false;
+    const currentPath = paths.filter((path) => path.url === originUrl);
+
+    if (currentPath.length > 0) {
+      const currentPathItem = currentPath[0];
+      console.log(currentPathItem);
+      result.isBackIcon = currentPathItem.isBack ?? true;
+      result.isNewBtn = currentPathItem.isNew ?? true;
+    }
   }
 
   return result;
