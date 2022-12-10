@@ -1,14 +1,57 @@
 .LandingPage {
   display: flex;
   flex-direction: column;
-  width: 200px;
 
-  .inputWrapper {
-    .input {
-      width: 150px;
+  .imgWrapper {
+    margin: 10px 0;
+
+    img {
+      height: 100px;
+      margin: 5px 0;
+    }
+    .defaultImg1 {
+      animation: bannermove 8s linear infinite;
+    }
+
+    .defaultImg2 {
+      animation: bannermoveReverse 7s linear infinite;
     }
   }
 
-  .createRP {
+  .buttonWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .inputWrapper {
+      .input {
+        width: 150px;
+      }
+    }
+
+    .button {
+      width: 200px;
+      margin-top: 10px;
+      font-family: Gaegu;
+    }
+  }
+}
+
+@keyframes bannermove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-35%, 0);
+  }
+}
+
+@keyframes bannermoveReverse {
+  0% {
+    transform: translate(-35%, 0);
+  }
+  100% {
+    transform: translate(0, 0);
   }
 }
