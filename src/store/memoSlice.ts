@@ -4,6 +4,8 @@ import produce from "immer";
 export interface IMemoSlice {
   color: string;
   setColor: (value: string) => void;
+  text: string;
+  setText: (value: string) => void;
 }
 
 export interface Memo {
@@ -12,6 +14,7 @@ export interface Memo {
 
 const initialState = {
   color: "",
+  text: "",
 };
 
 export interface User {
@@ -27,6 +30,13 @@ export const memoSlice: StateCreator<IMemoSlice> = (set) => ({
     set(
       produce((draft) => {
         draft.memo.color = value;
+      })
+    );
+  },
+  setText: (value: string) => {
+    set(
+      produce((draft) => {
+        draft.memo.text = value;
       })
     );
   },

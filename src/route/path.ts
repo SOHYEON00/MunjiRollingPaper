@@ -15,6 +15,7 @@ export enum PathTitles {
   Main = "Main",
   Memo = "Memo",
   Contents = "Contents",
+  Contents_Position = "Contents_Position",
 }
 
 export const paths: PathType[] = [
@@ -39,10 +40,16 @@ export const paths: PathType[] = [
     Component: lazy(() => import("../pages/SelectMemo/SelectMemo")),
   },
   {
-    key: "/main/memo/contents/:id",
+    key: "/main/contents/:id",
     title: PathTitles.Contents,
-    url: "/main/memo/contents/:id",
+    url: "/main/contents/:id",
     Component: lazy(() => import("../pages/Contents/Contents")),
+  },
+  {
+    key: "/main/contents/position/:id",
+    title: PathTitles.Contents_Position,
+    url: "/main/contents/position/:id",
+    Component: lazy(() => import("../pages/ContentsPosition/ContentsPosition")),
   },
 ];
 

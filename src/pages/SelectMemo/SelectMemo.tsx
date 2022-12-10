@@ -36,7 +36,7 @@ const SelectMemo = memo((props) => {
 
   const onSaveColor = useCallback(() => {
     setColor(selectedColor);
-    navigate(`main/memo/contents/${params?.id}`);
+    navigate(`/main/contents/${params?.id}`);
   }, [selectedColor, params?.id]);
 
   return (

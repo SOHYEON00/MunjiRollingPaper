@@ -20,3 +20,4 @@ export const useStore = create(
 
 export default useStore;
 export const useColor = () => useStore((store: IStore) => store.memo.color);
+export const useText = () => useStore((store: IStore) => store.memo.text);
