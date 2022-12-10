@@ -1,14 +1,27 @@
 import { Modal, ModalProps, Button } from "antd";
 import React, { useCallback } from "react";
 import { PopupProps } from "react-popup-manager/dist/src";
+import styles from "./Modal.module.scss";
 
 interface CustomModalProps extends ModalProps, PopupProps {
   contents?: string | React.ReactNode;
   isConfirm?: boolean;
 }
 
-export const CloseButtonFooter = (onCancel) => {
-  return <Button onClick={onCancel}>Ok</Button>;
+export const CloseButtonFooter = ({
+  onOk,
+  text,
+}: {
+  onOk: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  text: string | React.ReactNode;
+}) => {
+  return (
+    <div className={styles.footer}>
+      <Button onClick={onOk} type="primary">
+        {text || "Ok"}
+      </Button>
+    </div>
+  );
 };
 
 const CustomModal = ({
@@ -17,6 +30,7 @@ const CustomModal = ({
   isOpen,
   onClose,
   isConfirm = false,
+  okText,
   ...props
 }: CustomModalProps) => {
   const onCancel = useCallback(() => {
@@ -37,7 +51,10 @@ const CustomModal = ({
       open={isOpen}
       onCancel={onCancel}
       onOk={onOk}
-      footer={isConfirm ? <CloseButtonFooter onCancel={onCancel} /> : undefined}
+      width={300}
+      footer={
+        isConfirm ? null : <CloseButtonFooter onOk={onOk} text={okText} />
+      }
       {...props}
     >
       {contents}

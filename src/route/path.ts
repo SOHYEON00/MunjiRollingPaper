@@ -22,9 +22,9 @@ export const paths: PathType[] = [
     Component: lazy(() => import("../pages/Landing/Landing")),
   },
   {
-    key: "/:id",
+    key: "/main/:id",
     title: PathTitles.Main,
-    url: "/:id",
+    url: "/main/:id",
     Component: lazy(() => import("../pages/Main/Main")),
     isBack: true,
     isNew: true,
