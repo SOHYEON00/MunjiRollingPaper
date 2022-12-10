@@ -1,5 +1,4 @@
 import React, { lazy, LazyExoticComponent } from "react";
-import { matchPath, matchRoutes } from "react-router-dom";
 
 interface PathType {
   key: string;
@@ -16,6 +15,7 @@ export enum PathTitles {
   Memo = "Memo",
   Contents = "Contents",
   Contents_Position = "Contents_Position",
+  Stickers = "Stickers",
 }
 
 export const paths: PathType[] = [
@@ -50,6 +50,13 @@ export const paths: PathType[] = [
     title: PathTitles.Contents_Position,
     url: "/main/contents/position/:id",
     Component: lazy(() => import("../pages/ContentsPosition/ContentsPosition")),
+  },
+  {
+    key: "/main/stickers/:id",
+    title: PathTitles.Stickers,
+    url: "/main/stickers/:id",
+    Component: lazy(() => import("../pages/Stickers/Stickers")),
+    isBack: false,
   },
 ];
 

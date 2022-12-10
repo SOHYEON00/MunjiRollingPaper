@@ -6,6 +6,8 @@ export interface IMemoSlice {
   setColor: (value: string) => void;
   text: string;
   setText: (value: string) => void;
+  user: User | undefined;
+  setUser: (value: User) => void;
 }
 
 export interface Memo {
@@ -15,6 +17,7 @@ export interface Memo {
 const initialState = {
   color: "",
   text: "",
+  user: undefined,
 };
 
 export interface User {
@@ -37,6 +40,13 @@ export const memoSlice: StateCreator<IMemoSlice> = (set) => ({
     set(
       produce((draft) => {
         draft.memo.text = value;
+      })
+    );
+  },
+  setUser: (value: User) => {
+    set(
+      produce((draft) => {
+        draft.memo.user = value;
       })
     );
   },

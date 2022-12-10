@@ -22,13 +22,13 @@ const Header = memo((props) => {
 
   return (
     <section className={styles.Header}>
-      {isBackIcon && (
-        <div className={styles.goBackBtnWrapper}>
+      <div className={styles.goBackBtnWrapper}>
+        {isBackIcon && (
           <button onClick={onGoBack}>
             <img src={BackIcon} alt="go back button" />
           </button>
-        </div>
-      )}
+        )}
+      </div>
       <div className={styles.Title}>Munji Rolling Paper</div>
       {isNewBtn && (
         <Button className={styles.createBtn} onClick={onCreate}>
