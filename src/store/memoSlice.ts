@@ -8,6 +8,7 @@ export interface IMemoSlice {
   setText: (value: string) => void;
   user: User | undefined;
   setUser: (value: User) => void;
+  reset: () => void;
 }
 
 export interface Memo {
@@ -47,6 +48,14 @@ export const memoSlice: StateCreator<IMemoSlice> = (set) => ({
     set(
       produce((draft) => {
         draft.memo.user = value;
+      })
+    );
+  },
+  reset: () => {
+    set(
+      produce((draft) => {
+        draft.memo.color = "";
+        draft.memo.text = "";
       })
     );
   },

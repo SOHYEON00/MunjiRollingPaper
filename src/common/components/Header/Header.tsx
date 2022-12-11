@@ -30,10 +30,12 @@ const Header = memo((props) => {
         )}
       </div>
       <div className={styles.Title}>Munji Rolling Paper</div>
-      {isNewBtn && (
+      {isNewBtn ? (
         <Button className={styles.createBtn} onClick={onCreate}>
           생성하기
         </Button>
+      ) : (
+        <div className={styles.createBtn}></div>
       )}
     </section>
   );

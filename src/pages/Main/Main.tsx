@@ -13,8 +13,13 @@ const Main = () => {
   const params = useParams();
   const navigate = useNavigate();
   const setStoreUser = useStore((store: IStore) => store.memo.setUser);
+  const resetStore = useStore((store: IStore) => store.memo.reset);
 
   const [user, setUser] = React.useState<User>(undefined);
+
+  React.useEffect(() => {
+    resetStore();
+  }, []);
 
   /* ************** Get User Logics ************** */
 

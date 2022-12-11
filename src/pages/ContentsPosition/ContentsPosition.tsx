@@ -28,6 +28,7 @@ const ContentsPosition = memo(() => {
     const newCanvas = new fabric.Canvas("canvas", {
       height: 643,
       width: 516,
+      enableRetinaScaling: true,
     });
 
     setCanvas(newCanvas);
@@ -56,6 +57,10 @@ const ContentsPosition = memo(() => {
         );
       }
     }
+
+    return () => {
+      canvas?.remove();
+    };
   }, [canvas, initUser?.image]);
 
   const createMemoPic = useCallback(() => {
@@ -88,7 +93,7 @@ const ContentsPosition = memo(() => {
       height: height + 50,
     });
 
-    const scale = memoObj.width > 500 ? 500 / memoObj.width : memoObj.width;
+    const scale = memoObj.width > 500 ? 500 / memoObj.width : 1;
 
     const groupObj = new fabric.Group([memoObj, textObj], {
       left: 200,
@@ -111,6 +116,7 @@ const ContentsPosition = memo(() => {
         open(CustomModal, {
           okText: "스티커 추가하기",
           contents: "스티커로 롤링 페이퍼를 꾸며보세요",
+          isConfirm: true,
           onClose: (isOk) => {
             navigate(`/main/stickers/${params.id}`, { replace: true });
           },

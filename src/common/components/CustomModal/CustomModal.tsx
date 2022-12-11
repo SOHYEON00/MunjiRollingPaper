@@ -1,5 +1,5 @@
 import { Modal, ModalProps, Button } from "antd";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { PopupProps } from "react-popup-manager/dist/src";
 import styles from "./Modal.module.scss";
 
@@ -33,6 +33,12 @@ const CustomModal = ({
   okText,
   ...props
 }: CustomModalProps) => {
+  useEffect(() => {
+    return () => {
+      Modal.destroyAll();
+    };
+  }, []);
+
   const onCancel = useCallback(() => {
     if (onClose) {
       onClose(false);
