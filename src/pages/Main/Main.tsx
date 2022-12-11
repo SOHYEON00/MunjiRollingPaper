@@ -8,6 +8,7 @@ import { getPath, PathTitles } from "route/path";
 import useStore, { IStore } from "store";
 import { User } from "store/memoSlice";
 import styles from "./Main.module.scss";
+import AddButtonImg from "images/like.png";
 
 const Main = () => {
   const params = useParams();
@@ -61,7 +62,11 @@ const Main = () => {
     return (
       <>
         {userProps?.image ? (
-          <img src={userProps.image} alt="user background" />
+          <img
+            src={userProps.image}
+            alt="user background"
+            className={styles.rpImg}
+          />
         ) : (
           <div className={styles.infoMsgWrapper}>
             <p>작성된 롤링 페이퍼가 없어요!</p>
@@ -85,24 +90,32 @@ const Main = () => {
           {user ? <UserImageInfo userProps={user} /> : <ErrorInfo />}
         </div>
 
-        <div className={styles.createBtnWrapper}>
-          {user ? (
-            <Button
-              className={styles.createBtn}
-              type="primary"
-              onClick={onCreateNewMemo}
-            >
-              새로운 메모 작성하기
+        <div className={styles.buttonWrapper}>
+          <div className={styles.addButtonWrapper}>
+            <Button className={styles.addbutton}>
+              <img src={AddButtonImg} alt="AddButtonImg" width={40} />
             </Button>
-          ) : (
-            <Button
-              className={styles.createBtn}
-              type="primary"
-              onClick={onCreateNewRP}
-            >
-              새로운 롤링 페이퍼 생성하기
-            </Button>
-          )}
+          </div>
+
+          <div>
+            {user ? (
+              <Button
+                className={styles.createBtn}
+                type="primary"
+                onClick={onCreateNewMemo}
+              >
+                새로운 메모 작성하기
+              </Button>
+            ) : (
+              <Button
+                className={styles.createBtn}
+                type="primary"
+                onClick={onCreateNewRP}
+              >
+                새로운 롤링 페이퍼 생성하기
+              </Button>
+            )}
+          </div>
         </div>
       </section>
     </>

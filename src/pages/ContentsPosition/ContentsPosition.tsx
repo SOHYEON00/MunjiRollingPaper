@@ -118,7 +118,7 @@ const ContentsPosition = memo(() => {
           contents: "스티커로 롤링 페이퍼를 꾸며보세요",
           isConfirm: true,
           onClose: (isOk) => {
-            navigate(`/main/stickers/${params.id}`, { replace: true });
+            navigate(`/main/${params.id}`, { replace: true });
           },
         });
       });
