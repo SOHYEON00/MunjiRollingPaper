@@ -12,7 +12,12 @@ import AddButtonImg from "images/like.png";
 import { usePopupManager } from "react-popup-manager";
 import StickerListModal from "./StickerListModal";
 import { fabric } from "fabric";
-import { CanvasHeight, CanvasWidth, generateCanvas } from "share/utils";
+import {
+  CanvasHeight,
+  CanvasWidth,
+  generateCanvas,
+  setFabricImageDelControl,
+} from "share/utils";
 import CustomModal from "common/components/CustomModal/CustomModal";
 
 const Main = () => {
@@ -41,6 +46,8 @@ const Main = () => {
         width: CanvasWidth,
         enableRetinaScaling: true,
       });
+
+      setFabricImageDelControl();
 
       newCanvas.setZoom(0.2);
       newCanvas.setBackgroundImage(
