@@ -2,70 +2,18 @@ import { Button, Input } from "antd";
 import * as React from "react";
 import styles from "./Landing.module.scss";
 import { debounce } from "lodash";
-import { createNewUser, storagePath } from "queries/firebaseQuery";
+import { createNewUser } from "queries/firebaseQuery";
 import { useNavigate } from "react-router-dom";
 import { usePopupManager } from "react-popup-manager";
 import CustomModal from "common/components/CustomModal/CustomModal";
-import { getDefaultsImage, saveLocalStorage } from "share/utils";
-import { getDownloadURL, ref } from "firebase/storage";
-import { storage } from "queries/firebaseConfig";
 import Header from "common/components/Header/Header";
-
-const DEFAULT1 = "default1.png";
-const DEFAULT2 = "default2.png";
+import Image1 from "images/default1.png";
+import Image2 from "images/default2.png";
 
 const Landing = () => {
   const [name, setName] = React.useState<string>("");
   const navigate = useNavigate();
   const { open } = usePopupManager();
-
-  const [image1, setImage1] = React.useState<any>("");
-  const [image2, setImage2] = React.useState<any>("");
-
-  React.useEffect(() => {
-    const getLs = getLSImage(DEFAULT1);
-
-    if (!getLs) {
-      getDefaults(DEFAULT1, (url: string) => {
-        setImage1(url);
-        saveLocalStorage(DEFAULT1, url);
-      });
-    } else {
-      setImage1(getLs);
-    }
-  }, []);
-
-  React.useEffect(() => {
-    const getLs = getLSImage(DEFAULT2);
-
-    if (!getLs) {
-      getDefaults(DEFAULT2, (url: string) => {
-        setImage2(url);
-        saveLocalStorage(DEFAULT2, url);
-      });
-    } else {
-      setImage2(getLs);
-    }
-  }, []);
-
-  async function getDefaults(name: string, callback: (url: string) => void) {
-    try {
-      const url = await getDownloadURL(ref(storage, `${storagePath}${name}`));
-      callback(url);
-      return url;
-    } catch (e) {
-      console.log("Fail to Get Default Image 1");
-    }
-  }
-
-  function getLSImage(name: string) {
-    try {
-      const result = getDefaultsImage(name);
-      return result || "";
-    } catch (e) {
-      console.log("Fail to Get Default Image 2");
-    }
-  }
 
   /* Event Handler */
   const onCreateRP = React.useCallback(async () => {
@@ -111,34 +59,32 @@ const Landing = () => {
     <>
       <Header />
       <section className={styles.LandingPage}>
-        {(image1 || image2) && (
-          <div className={styles.imgWrapper}>
-            <img
-              className={styles.defaultImg1}
-              src={image1}
-              alt="sticker set1"
-              height={100}
-            />
-            <img
-              className={styles.defaultImg2}
-              src={image2}
-              alt="sticker set2"
-              height={100}
-            />
-            <img
-              className={styles.defaultImg1}
-              src={image1}
-              alt="sticker set1"
-              height={100}
-            />
-            <img
-              className={styles.defaultImg2}
-              src={image2}
-              alt="sticker set2"
-              height={100}
-            />
-          </div>
-        )}
+        <div className={styles.imgWrapper}>
+          <img
+            className={styles.defaultImg1}
+            src={Image1}
+            alt="sticker set1"
+            height={100}
+          />
+          <img
+            className={styles.defaultImg2}
+            src={Image2}
+            alt="sticker set2"
+            height={100}
+          />
+          <img
+            className={styles.defaultImg1}
+            src={Image1}
+            alt="sticker set1"
+            height={100}
+          />
+          <img
+            className={styles.defaultImg2}
+            src={Image2}
+            alt="sticker set2"
+            height={100}
+          />
+        </div>
         <div className={styles.buttonWrapper}>
           <div className={styles.inputWrapper}>
             <Input onChange={onSetName} width={150} className={styles.input} />{" "}

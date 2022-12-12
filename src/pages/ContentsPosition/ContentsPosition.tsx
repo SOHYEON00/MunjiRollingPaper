@@ -89,7 +89,7 @@ const ContentsPosition = memo(() => {
       fill: color,
       rx: 5,
       ry: 5,
-      width: calcWidth(width, height) + 50,
+      width: calcWidth(width, height) + 20,
       height: height + 50,
     });
 

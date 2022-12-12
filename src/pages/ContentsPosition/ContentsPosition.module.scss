@@ -1,8 +1,9 @@
 .nextBtnWrapper {
   text-align: center;
-  position: relative;
-  bottom: 130px;
+  position: fixed;
+  bottom: 50px;
   width: 100%;
+  max-width: 516px;
   height: 100px;
   display: flex;
   justify-content: center;

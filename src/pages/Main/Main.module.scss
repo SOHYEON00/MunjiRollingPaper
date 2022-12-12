@@ -50,3 +50,32 @@
     }
   }
 }
+
+.info {
+  text-align: center;
+  font-family: "Gaegu";
+  color: red;
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: 35px;
+}
+
+.StickerListModal {
+  .stickerList {
+    margin: 5px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+
+    .sticker {
+      margin: 5px;
+
+      &:hover {
+        border: 1px solid #fac6c6;
+        width: 95px;
+        box-shadow: 0 0 10px #fac6c6;
+        border-radius: 7px;
+      }
+    }
+  }
+}
