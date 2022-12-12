@@ -1,9 +1,15 @@
+.rpImg {
+  width: 100%;
+  height: auto;
+}
+
 .Wrapper {
-  height: 90%;
+  height: 100%;
 
   .imgWrapper {
-    height: 70%;
+    // height: 100%;
     display: flex;
+    justify-content: center;
   }
 
   .infoMsgWrapper {
@@ -14,7 +20,62 @@
     justify-content: center;
   }
 
-  .createBtnWrapper {
+  .buttonWrapper {
     text-align: center;
+    margin-top: 10px;
+    position: fixed;
+    bottom: 7vh;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+    max-width: 516px;
+
+    .addButtonWrapper {
+      display: flex;
+      justify-content: end;
+
+      .addbutton {
+        width: 61px;
+        display: flex;
+        text-align: center;
+        height: auto;
+        align-items: center;
+        justify-content: center;
+        border: none;
+      }
+    }
+
+    .createBtnWrapper {
+    }
+  }
+}
+
+.info {
+  text-align: center;
+  font-family: "Gaegu";
+  color: red;
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: 35px;
+}
+
+.StickerListModal {
+  .stickerList {
+    margin: 5px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+
+    .sticker {
+      margin: 5px;
+
+      &:hover {
+        border: 1px solid #fac6c6;
+        width: 95px;
+        box-shadow: 0 0 10px #fac6c6;
+        border-radius: 7px;
+      }
+    }
   }
 }
