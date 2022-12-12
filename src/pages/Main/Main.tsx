@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import Header from "common/components/Header/Header";
 import TopLabel from "common/components/TopLabel/TopLabel";
-import { getCurrentUser } from "queries/firebaseQuery";
+import { getCurrentUser, setUserImage } from "queries/firebaseQuery";
 import * as React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPath, PathTitles } from "route/path";
@@ -42,6 +42,7 @@ const Main = () => {
         enableRetinaScaling: true,
       });
 
+      newCanvas.setZoom(0.2);
       newCanvas.setBackgroundImage(
         user.image,
         newCanvas.renderAll.bind(newCanvas)
