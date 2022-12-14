@@ -31,7 +31,7 @@ const ContentsPosition = memo(() => {
       width: CanvasWidth,
       enableRetinaScaling: true,
     });
-    newCanvas.setZoom(0.1);
+    newCanvas.setZoom(0.15);
     setCanvas(newCanvas);
   }, []);
 

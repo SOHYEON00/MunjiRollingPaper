@@ -16,7 +16,7 @@ const Header = memo((props) => {
     navigation(-1);
   }, []);
 
-  const onCreate = useCallback(() => {
+  const onGoToMain = useCallback(() => {
     navigation(getPath(PathTitles.Landing));
   }, []);
 
@@ -29,9 +29,11 @@ const Header = memo((props) => {
           </button>
         )}
       </div>
-      <div className={styles.Title}>Munji Rolling Paper</div>
+      <div className={styles.Title} onClick={onGoToMain}>
+        먼지 롤링 페이퍼
+      </div>
       {isNewBtn ? (
-        <Button className={styles.createBtn} onClick={onCreate}>
+        <Button className={styles.createBtn} onClick={onGoToMain}>
           생성하기
         </Button>
       ) : (
