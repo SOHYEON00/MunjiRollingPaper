@@ -1,11 +1,10 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
 import { PopupProps } from "react-popup-manager/dist/src";
 import { Modal, ModalProps } from "antd";
-import { CloseButtonFooter } from "common/components/CustomModal/CustomModal";
 import { getDownloadURL, listAll, ref } from "firebase/storage";
 import { storage } from "queries/firebaseConfig";
 import { storagePath } from "queries/firebaseQuery";
-import styles from "./Main.module.scss";
+import "./StickerListModal.scss";
 import { getDefaultsImage, saveLocalStorage } from "share/utils";
 
 interface StickerListModalProps extends ModalProps, PopupProps {
@@ -86,24 +85,25 @@ const StickerListModal = memo(
         open={isOpen}
         onCancel={onCancel}
         width={500}
+        style={{ top: "70px" }}
         footer={
-          <div className={styles.info}>
+          <div className={"info"}>
             스티커를 선택하여 롤링 페이퍼를 꾸며보세요.
           </div>
         }
-        className={styles.StickerListModal}
+        className={"StickerListModal"}
         {...props}
       >
-        <div className={styles.stickerList}>
+        <div className={"stickerList"}>
           {list?.map((sticker, index) => {
             const key = `${sticker}${index}`;
             return (
               <img
                 src={sticker}
                 alt={key}
-                width={97}
+                width={77}
                 height={"auto"}
-                className={styles.sticker}
+                className={"sticker"}
                 key={key}
                 onClick={onSelectSticker}
               />

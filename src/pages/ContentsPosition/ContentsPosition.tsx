@@ -71,6 +71,7 @@ const ContentsPosition = memo(() => {
       originY: "top",
       left: 10,
       top: 10,
+      fontFamily: "Gaegu",
     });
 
     const height = textObj.calcTextHeight();

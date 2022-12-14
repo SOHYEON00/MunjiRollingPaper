@@ -1,0 +1,36 @@
+.StickerListModal {
+  max-height: 550px;
+  font-family: "Gowun Dodum";
+
+  .ant-modal-content {
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .info {
+    color: red;
+  }
+
+  .stickerList {
+    margin: 5px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    height: 450px;
+    overflow-y: scroll;
+
+    .sticker {
+      margin: 5px;
+
+      &:hover {
+        border: 1px solid #fac6c6;
+        width: 95px;
+        box-shadow: 0 0 10px #fac6c6;
+        border-radius: 7px;
+      }
+    }
+  }
+}
