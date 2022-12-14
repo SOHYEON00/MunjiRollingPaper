@@ -101,7 +101,6 @@ const StickerListModal = memo(
               <img
                 src={sticker}
                 alt={key}
-                width={77}
                 height={"auto"}
                 className={"sticker"}
                 key={key}

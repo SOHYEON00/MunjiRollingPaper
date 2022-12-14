@@ -12,7 +12,13 @@
     justify-content: center;
   }
 
+  .canvasWrapper {
+    height: 500px;
+    overflow-y: scroll;
+  }
+
   .infoMsgWrapper {
+    margin-top: 35%;
     width: 100%;
     text-align: center;
     display: flex;

@@ -65,7 +65,12 @@ const Contents = memo(() => {
         </div>
 
         <div className={styles.nextBtnWrapper}>
-          <Button type="primary" disabled={!text} onClick={onSaveText}>
+          <Button
+            type="primary"
+            disabled={!text}
+            onClick={onSaveText}
+            style={{ fontFamily: '"Gowun Dodum' }}
+          >
             다음으로
           </Button>
         </div>

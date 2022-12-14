@@ -17,7 +17,11 @@ export const CloseButtonFooter = ({
 }) => {
   return (
     <div className={styles.footer}>
-      <Button onClick={onOk} type="primary">
+      <Button
+        onClick={onOk}
+        type="primary"
+        style={{ fontFamily: '"Gowun Dodum' }}
+      >
         {text || "Ok"}
       </Button>
     </div>
@@ -58,6 +62,7 @@ const CustomModal = ({
       onCancel={onCancel}
       onOk={onOk}
       width={300}
+      style={{ fontFamily: '"Gowun Dodum' }}
       footer={
         isConfirm ? null : <CloseButtonFooter onOk={onOk} text={okText} />
       }
