@@ -6,7 +6,7 @@
     margin: 10px 0;
 
     img {
-      height: 100px;
+      height: 13vh;
       margin: 5px 0;
     }
     .defaultImg1 {
@@ -21,8 +21,10 @@
   .buttonWrapper {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    position: fixed;
+    bottom: 11vh;
+    width: 100%;
 
     .inputWrapper {
       .input {
