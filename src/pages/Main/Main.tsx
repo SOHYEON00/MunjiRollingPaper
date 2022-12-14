@@ -49,7 +49,7 @@ const Main = () => {
 
       setFabricImageDelControl();
 
-      newCanvas.setZoom(0.2);
+      newCanvas.setZoom(0.1);
       newCanvas.setBackgroundImage(
         user.image,
         newCanvas.renderAll.bind(newCanvas)

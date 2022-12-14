@@ -31,7 +31,7 @@ const ContentsPosition = memo(() => {
       width: CanvasWidth,
       enableRetinaScaling: true,
     });
-    newCanvas.setZoom(0.2);
+    newCanvas.setZoom(0.1);
     setCanvas(newCanvas);
   }, []);
 
@@ -66,7 +66,7 @@ const ContentsPosition = memo(() => {
 
   const createMemoPic = useCallback(() => {
     const textObj = new fabric.Text(text, {
-      fontSize: 15,
+      fontSize: 25,
       originX: "left",
       originY: "top",
       left: 10,

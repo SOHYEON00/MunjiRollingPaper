@@ -46,7 +46,7 @@ const Contents = memo(() => {
   }, [text, params?.id]);
 
   return (
-    <div>
+    <>
       <Header />
 
       <section
@@ -60,7 +60,7 @@ const Contents = memo(() => {
             defaultValue={text}
             onChange={onChangeText}
             className={styles.textArea}
-            style={{ backgroundColor: color, resize: "none", height: 500 }}
+            style={{ backgroundColor: color, resize: "none", height: "57vh" }}
           />
         </div>
 
@@ -70,7 +70,7 @@ const Contents = memo(() => {
           </Button>
         </div>
       </section>
-    </div>
+    </>
   );
 });
 
