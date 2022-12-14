@@ -45,6 +45,7 @@ const Main = () => {
         height: CanvasHeight,
         width: CanvasWidth,
         enableRetinaScaling: true,
+        allowTouchScrolling: true,
       });
 
       setFabricImageDelControl();
