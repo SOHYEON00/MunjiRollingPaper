@@ -21,7 +21,7 @@ export const generateCanvas = (canvas) => {
 };
 
 export const CanvasWidth = 516;
-export const CanvasHeight = 643;
+export const CanvasHeight = 1000;
 
 export const setFabricImageDelControl = () => {
   const deleteImg = document.createElement("img");

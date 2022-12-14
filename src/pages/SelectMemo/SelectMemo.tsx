@@ -62,7 +62,12 @@ const SelectMemo = memo((props) => {
         })}
       </section>
       <div className={styles.nextBtnWrapper}>
-        <Button onClick={onSaveColor} disabled={!selectedColor} type="primary">
+        <Button
+          onClick={onSaveColor}
+          disabled={!selectedColor}
+          type="primary"
+          style={{ fontFamily: '"Gowun Dodum' }}
+        >
           다음으로
         </Button>
       </div>

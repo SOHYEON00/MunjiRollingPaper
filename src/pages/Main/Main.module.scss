@@ -12,12 +12,19 @@
     justify-content: center;
   }
 
+  .canvasWrapper {
+    height: 500px;
+    overflow-y: scroll;
+  }
+
   .infoMsgWrapper {
+    margin-top: 35%;
     width: 100%;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-family: "Gowun Dodum";
   }
 
   .buttonWrapper {
@@ -45,37 +52,18 @@
         border: none;
       }
     }
-
-    .createBtnWrapper {
-    }
   }
+}
+
+.createBtn {
+  font-family: "Gowun Dodum";
 }
 
 .info {
   text-align: center;
-  font-family: "Gaegu";
   color: red;
   font-size: 17px;
   font-weight: 600;
   margin-top: 35px;
-}
-
-.StickerListModal {
-  .stickerList {
-    margin: 5px 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: start;
-
-    .sticker {
-      margin: 5px;
-
-      &:hover {
-        border: 1px solid #fac6c6;
-        width: 95px;
-        box-shadow: 0 0 10px #fac6c6;
-        border-radius: 7px;
-      }
-    }
-  }
+  font-family: "Gowun Dodum";
 }

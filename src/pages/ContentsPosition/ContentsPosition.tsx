@@ -31,7 +31,7 @@ const ContentsPosition = memo(() => {
       width: CanvasWidth,
       enableRetinaScaling: true,
     });
-    newCanvas.setZoom(0.1);
+    newCanvas.setZoom(0.15);
     setCanvas(newCanvas);
   }, []);
 
@@ -71,6 +71,7 @@ const ContentsPosition = memo(() => {
       originY: "top",
       left: 10,
       top: 10,
+      fontFamily: "Gaegu",
     });
 
     const height = textObj.calcTextHeight();
