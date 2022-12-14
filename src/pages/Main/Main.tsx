@@ -130,7 +130,7 @@ const Main = () => {
           contents: "롤링 페이퍼 꾸미기 적용되었습니다.",
           isConfirm: true,
           onClose: (isOk) => {
-            navigate(`/main/${params.id}`, { replace: true });
+            window.location.reload();
           },
         });
       })
