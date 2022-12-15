@@ -17,6 +17,7 @@ import {
   CanvasWidth,
   generateCanvas,
   setFabricImageDelControl,
+  zoomValue,
 } from "share/utils";
 import CustomModal from "common/components/CustomModal/CustomModal";
 
@@ -50,7 +51,7 @@ const Main = () => {
 
       setFabricImageDelControl();
 
-      newCanvas.setZoom(0.15);
+      newCanvas.setZoom(zoomValue / 2.5);
       newCanvas.setBackgroundImage(
         user.image,
         newCanvas.renderAll.bind(newCanvas)
@@ -106,8 +107,8 @@ const Main = () => {
             url,
             (img) => {
               img.set({
-                scaleX: 500 / img.width,
-                scaleY: 500 / img.height,
+                scaleX: 100 / img.width,
+                scaleY: 100 / img.height,
                 strokeUniform: true,
               });
               setIsEditSticker(true);

@@ -11,7 +11,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { usePopupManager } from "react-popup-manager";
 import CustomModal from "common/components/CustomModal/CustomModal";
 import { User } from "store/memoSlice";
-import { CanvasHeight, CanvasWidth, generateCanvas } from "share/utils";
+import {
+  CanvasHeight,
+  CanvasWidth,
+  generateCanvas,
+  zoomValue,
+} from "share/utils";
 
 const ContentsPosition = memo(() => {
   const initUser = useUser();
@@ -31,7 +36,7 @@ const ContentsPosition = memo(() => {
       width: CanvasWidth,
       enableRetinaScaling: true,
     });
-    newCanvas.setZoom(0.15);
+    newCanvas.setZoom(zoomValue / 2.5);
     setCanvas(newCanvas);
   }, []);
 
@@ -96,14 +101,13 @@ const ContentsPosition = memo(() => {
     });
 
     const groupObj = new fabric.Group([memoObj, textObj], {
-      left: 200,
-      top: 400,
-      scaleX: 3,
-      scaleY: 3,
+      left: 0,
+      top: 0,
+      scaleX: 2,
+      scaleY: 2,
     });
 
     canvas.add(groupObj);
-    // canvas.centerObject(groupObj);
   }, [canvas, color, text]);
 
   const onSaveRP = useCallback(async () => {

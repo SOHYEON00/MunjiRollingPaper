@@ -9,19 +9,24 @@ export const getDefaultsImage = (key: string) => {
 };
 
 export const generateCanvas = (canvas) => {
+  canvas.setZoom(1);
+  canvas.requestRenderAll();
+
   const url = canvas.toDataURL({
     width: canvas.width,
     height: canvas.height,
     left: 0,
     top: 0,
     format: "png",
-    multiplier: 5,
   });
+
+  canvas.setZoom(0.6);
   return url;
 };
 
-export const CanvasWidth = 516;
-export const CanvasHeight = 1000;
+export const CanvasWidth = 838.5;
+export const CanvasHeight = 1625;
+export const zoomValue = 1.5;
 
 export const setFabricImageDelControl = () => {
   const deleteImg = document.createElement("img");
