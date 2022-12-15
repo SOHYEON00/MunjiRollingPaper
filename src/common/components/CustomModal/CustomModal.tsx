@@ -20,7 +20,7 @@ export const CloseButtonFooter = ({
       <Button
         onClick={onOk}
         type="primary"
-        style={{ fontFamily: '"Gowun Dodum' }}
+        style={{ fontFamily: '"Gowun Dodum', backgroundColor: "#38393b" }}
       >
         {text || "Ok"}
       </Button>

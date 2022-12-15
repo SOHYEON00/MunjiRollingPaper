@@ -61,7 +61,10 @@ const Contents = memo(() => {
             type="primary"
             disabled={!text}
             onClick={onSaveText}
-            style={{ fontFamily: '"Gowun Dodum' }}
+            style={{
+              fontFamily: '"Gowun Dodum',
+              backgroundColor: !text ? "" : "#38393b",
+            }}
           >
             다음으로
           </Button>

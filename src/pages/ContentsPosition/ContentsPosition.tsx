@@ -113,7 +113,12 @@ const ContentsPosition = memo(() => {
       await setUserImage(params.id, { image: url }).then((res) => {
         open(CustomModal, {
           okText: "스티커 추가하기",
-          contents: "+ 버튼을 눌러 스티커로 롤링 페이퍼를 꾸며보세요!",
+          contents: (
+            <div>
+              + 버튼을 눌러 <br />
+              스티커로 롤링 페이퍼를 꾸며보세요!
+            </div>
+          ),
           isConfirm: true,
           onClose: (isOk) => {
             navigate(`/main/${params.id}`, { replace: true });
@@ -137,7 +142,11 @@ const ContentsPosition = memo(() => {
             수정 불가능하니 신중하게!
           </div>
 
-          <Button type="primary" onClick={onSaveRP}>
+          <Button
+            type="primary"
+            onClick={onSaveRP}
+            style={{ backgroundColor: "#38393b" }}
+          >
             메모 남기기
           </Button>
         </div>

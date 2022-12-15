@@ -66,7 +66,10 @@ const SelectMemo = memo((props) => {
           onClick={onSaveColor}
           disabled={!selectedColor}
           type="primary"
-          style={{ fontFamily: '"Gowun Dodum' }}
+          style={{
+            fontFamily: '"Gowun Dodum',
+            backgroundColor: !selectedColor ? "" : "#38393b",
+          }}
         >
           다음으로
         </Button>
