@@ -113,7 +113,7 @@ const ContentsPosition = memo(() => {
       await setUserImage(params.id, { image: url }).then((res) => {
         open(CustomModal, {
           okText: "스티커 추가하기",
-          contents: "스티커로 롤링 페이퍼를 꾸며보세요",
+          contents: "+ 버튼을 눌러 스티커로 롤링 페이퍼를 꾸며보세요!",
           isConfirm: true,
           onClose: (isOk) => {
             navigate(`/main/${params.id}`, { replace: true });
@@ -132,7 +132,10 @@ const ContentsPosition = memo(() => {
         <canvas id="canvas" />
 
         <div className={styles.nextBtnWrapper}>
-          <div className={styles.nextInfo}>이젠 수정이 불가능해요!</div>
+          <div className={styles.nextInfo}>
+            메모지를 움직여 원하는 곳에 붙여주세요! <br />
+            수정 불가능하니 신중하게!
+          </div>
 
           <Button type="primary" onClick={onSaveRP}>
             메모 남기기

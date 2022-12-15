@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./TopLabel.module.scss";
 
 interface TopLabelProps {
-  contents: string;
+  contents: string | React.ReactNode;
 }
 
 const TopLabel = ({ contents, ...props }: TopLabelProps) => {

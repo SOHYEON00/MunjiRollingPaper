@@ -34,15 +34,7 @@ const Contents = memo(() => {
   const onSaveText = useCallback(() => {
     setStoreText(text);
 
-    open(CustomModal, {
-      contents: "메모를 남기시겠습니까?",
-      okText: "메모 남기기",
-      onClose: (isOk) => {
-        if (isOk) {
-          navigate(`/main/contents/position/${params.id}`);
-        }
-      },
-    });
+    navigate(`/main/contents/position/${params.id}`);
   }, [text, params?.id]);
 
   return (

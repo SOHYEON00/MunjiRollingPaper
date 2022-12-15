@@ -4,6 +4,7 @@ import { GetHeaderInfo, getPath, PathTitles } from "route/path";
 import BackIcon from "images/back_icon.png";
 import { Button } from "antd";
 import styles from "./Header.module.scss";
+import HeaderIcon from "image/header2.png";
 
 const Header = memo((props) => {
   const location = useLocation();
@@ -29,12 +30,21 @@ const Header = memo((props) => {
           </button>
         )}
       </div>
-      <div className={styles.Title} onClick={onGoToMain}>
+      {/* <div className={styles.Title} onClick={onGoToMain}>
         먼지 롤링 페이퍼
+      </div> */}
+
+      <div onClick={onGoToMain}>
+        <img
+          src={HeaderIcon}
+          alt="title"
+          width={150}
+          // height={55}
+        />
       </div>
       {isNewBtn ? (
         <Button className={styles.createBtn} onClick={onGoToMain}>
-          생성하기
+          New
         </Button>
       ) : (
         <div className={styles.createBtn}></div>
