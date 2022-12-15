@@ -199,7 +199,12 @@ const Main = () => {
       <section className={styles.Wrapper}>
         {user && (
           <TopLabel
-            contents={`${user?.name} 님에게 롤링 페이퍼를 작성해주세요!`}
+            contents={
+              <div>
+                <span style={{ fontWeight: 600 }}>{user?.name}</span> 님의
+                롤링페이퍼
+              </div>
+            }
           />
         )}
         <div className={styles.imgWrapper}>
