@@ -25,6 +25,9 @@
     position: fixed;
     bottom: 11vh;
     width: 100%;
+    max-width: 516px;
+    padding-top: 30px;
+    background-color: white;
 
     .inputWrapper {
       .input {
