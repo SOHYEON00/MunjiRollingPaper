@@ -20,13 +20,26 @@ export const generateCanvas = (canvas) => {
     format: "png",
   });
 
-  canvas.setZoom(0.6);
   return url;
+};
+
+export const getParentElSize = (
+  id: string
+): { height: number; width: number } => {
+  const canvasEl = document.getElementById(id);
+
+  if (canvasEl) {
+    return {
+      height: canvasEl.parentElement.clientHeight * 2,
+      width: canvasEl.parentElement.clientWidth * 2,
+    };
+  }
+  return undefined;
 };
 
 export const CanvasWidth = 838.5;
 export const CanvasHeight = 1625;
-export const zoomValue = 1.5;
+export const zoomValue = 0.6;
 
 export const setFabricImageDelControl = () => {
   const deleteImg = document.createElement("img");

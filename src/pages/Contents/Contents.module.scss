@@ -16,6 +16,17 @@
     }
   }
 
+  .infoMessage {
+    font-family: "Gowun Dodum";
+    padding: 25px 10px 15px;
+    font-size: 11px;
+
+    .info {
+      font-weight: 600;
+      color: #960909;
+    }
+  }
+
   .nextBtnWrapper {
     text-align: center;
     position: fixed;

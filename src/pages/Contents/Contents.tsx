@@ -56,6 +56,12 @@ const Contents = memo(() => {
           />
         </div>
 
+        <div className={styles.infoMessage}>
+          <span className={styles.info}>안내</span>: 모든 메시지는 익명이
+          보장되지만, 욕설이나 모욕, 성희롱 등 부적절한 메시지로 인해 경찰 협조
+          요청이 들어올 경우, 운영자는 수사에 필요한 정보를 제공할 수 있습니다.
+        </div>
+
         <div className={styles.nextBtnWrapper}>
           <Button
             type="primary"

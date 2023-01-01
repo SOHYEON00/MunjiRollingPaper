@@ -13,9 +13,8 @@ import { usePopupManager } from "react-popup-manager";
 import StickerListModal from "./StickerListModal";
 import { fabric } from "fabric";
 import {
-  CanvasHeight,
-  CanvasWidth,
   generateCanvas,
+  getParentElSize,
   setFabricImageDelControl,
   zoomValue,
 } from "share/utils";
@@ -41,17 +40,19 @@ const Main = () => {
 
   React.useEffect(() => {
     if (!!user?.image) {
+      const size = getParentElSize("main");
+
       // canvas setting
       const newCanvas = new fabric.Canvas("main", {
-        height: CanvasHeight,
-        width: CanvasWidth,
+        height: size.height,
+        width: size.width,
         enableRetinaScaling: true,
         allowTouchScrolling: true,
       });
 
       setFabricImageDelControl();
 
-      newCanvas.setZoom(zoomValue / 2.5);
+      newCanvas.setZoom(zoomValue);
       newCanvas.setBackgroundImage(
         user.image,
         newCanvas.renderAll.bind(newCanvas)
@@ -110,9 +111,12 @@ const Main = () => {
                 scaleX: 100 / img.width,
                 scaleY: 100 / img.height,
                 strokeUniform: true,
+                left: 50,
+                top: 50,
               });
               setIsEditSticker(true);
               canvas.current.add(img);
+              canvas.current.setActiveObject(img);
             },
             { crossOrigin: "anonymous" }
           );

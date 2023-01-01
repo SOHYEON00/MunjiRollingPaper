@@ -1,22 +1,16 @@
 import Header from "common/components/Header/Header";
 import TopLabel from "common/components/TopLabel/TopLabel";
-import React, { memo, useCallback, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect } from "react";
 import useStore, { IStore, useColor, useText, useUser } from "store";
 import { fabric } from "fabric";
 import { Button } from "antd";
 import styles from "./ContentsPosition.module.scss";
-import { setDoc } from "firebase/firestore";
 import { getCurrentUser, setUserImage } from "queries/firebaseQuery";
 import { useNavigate, useParams } from "react-router-dom";
 import { usePopupManager } from "react-popup-manager";
 import CustomModal from "common/components/CustomModal/CustomModal";
 import { User } from "store/memoSlice";
-import {
-  CanvasHeight,
-  CanvasWidth,
-  generateCanvas,
-  zoomValue,
-} from "share/utils";
+import { generateCanvas, getParentElSize, zoomValue } from "share/utils";
 
 const ContentsPosition = memo(() => {
   const initUser = useUser();
@@ -28,16 +22,20 @@ const ContentsPosition = memo(() => {
   const { open } = usePopupManager();
   const navigate = useNavigate();
 
-  const [canvas, setCanvas] = useState(undefined);
+  const canvas = React.useRef<fabric.Canvas>(undefined);
 
   useEffect(() => {
+    const size = getParentElSize("canvas");
+
     const newCanvas = new fabric.Canvas("canvas", {
-      height: CanvasHeight,
-      width: CanvasWidth,
+      height: size.height,
+      width: size.width,
       enableRetinaScaling: true,
+      allowTouchScrolling: true,
     });
-    newCanvas.setZoom(zoomValue / 2.5);
-    setCanvas(newCanvas);
+
+    newCanvas.setZoom(zoomValue);
+    canvas.current = newCanvas;
   }, []);
 
   React.useEffect(() => {
@@ -57,15 +55,15 @@ const ContentsPosition = memo(() => {
       createMemoPic();
 
       if (!!initUser?.image) {
-        canvas.setBackgroundImage(
+        canvas.current.setBackgroundImage(
           initUser.image,
-          canvas.renderAll.bind(canvas)
+          canvas.current.renderAll.bind(canvas)
         );
       }
     }
 
     return () => {
-      canvas?.remove();
+      canvas.current?.remove();
     };
   }, [canvas, initUser?.image]);
 
@@ -101,20 +99,20 @@ const ContentsPosition = memo(() => {
     });
 
     const groupObj = new fabric.Group([memoObj, textObj], {
-      left: 0,
-      top: 0,
-      scaleX: 2,
-      scaleY: 2,
+      left: 50,
+      top: 50,
+      scaleX: 1.5,
+      scaleY: 1.5,
     });
 
-    canvas.add(groupObj);
-    canvas.setActiveObject(groupObj);
-    canvas.renderAll();
+    canvas.current.add(groupObj);
+
+    canvas.current.setActiveObject(groupObj);
   }, [canvas, color, text]);
 
   const onSaveRP = useCallback(async () => {
     if (canvas && params?.id) {
-      const url = generateCanvas(canvas);
+      const url = generateCanvas(canvas.current);
 
       await setUserImage(params.id, { image: url }).then((res) => {
         open(CustomModal, {
@@ -127,8 +125,8 @@ const ContentsPosition = memo(() => {
           ),
           isConfirm: true,
           onClose: (isOk) => {
-            canvas.discardActiveObject();
-            canvas.renderAll();
+            canvas.current.discardActiveObject();
+            canvas.current.renderAll();
 
             navigate(`/main/${params.id}`, { replace: true });
           },
@@ -140,7 +138,7 @@ const ContentsPosition = memo(() => {
   return (
     <>
       <Header />
-      <section>
+      <section style={{ width: "100%", height: "100%" }}>
         <TopLabel contents={initUser ? `${initUser.name} 님` : ""} />
 
         <canvas id="canvas" />
