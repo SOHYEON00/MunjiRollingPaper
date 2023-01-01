@@ -31,7 +31,7 @@ const Main = () => {
 
   const [user, setUser] = React.useState<User>(undefined);
   const [isEditSticker, setIsEditSticker] = React.useState<boolean>(false);
-  const canvas = React.useRef(undefined);
+  const canvas = React.useRef<fabric.Canvas>(undefined);
 
   /* ************** Init Canvas ************** */
 
@@ -123,6 +123,9 @@ const Main = () => {
 
   const onFinishEditDeco = React.useCallback(async () => {
     const url = generateCanvas(canvas.current);
+
+    canvas.current.discardActiveObject();
+    canvas.current.renderAll();
 
     await setUserImage(params.id, { image: url })
       .then((res) => {

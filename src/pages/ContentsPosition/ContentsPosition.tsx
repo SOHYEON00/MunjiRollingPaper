@@ -108,6 +108,8 @@ const ContentsPosition = memo(() => {
     });
 
     canvas.add(groupObj);
+    canvas.setActiveObject(groupObj);
+    canvas.renderAll();
   }, [canvas, color, text]);
 
   const onSaveRP = useCallback(async () => {
@@ -125,6 +127,9 @@ const ContentsPosition = memo(() => {
           ),
           isConfirm: true,
           onClose: (isOk) => {
+            canvas.discardActiveObject();
+            canvas.renderAll();
+
             navigate(`/main/${params.id}`, { replace: true });
           },
         });
