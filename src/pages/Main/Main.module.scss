@@ -38,6 +38,11 @@
     flex-direction: column;
     max-width: 516px;
 
+    .iconButtonWrapper {
+      display: flex;
+      justify-content: space-between;
+    }
+
     .addButtonWrapper {
       display: flex;
       justify-content: end;

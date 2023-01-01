@@ -30,8 +30,8 @@ export const getParentElSize = (
 
   if (canvasEl) {
     return {
-      height: canvasEl.parentElement.clientHeight * 2,
-      width: canvasEl.parentElement.clientWidth * 2,
+      height: canvasEl.parentElement.clientHeight * 3,
+      width: canvasEl.parentElement.clientWidth * 3,
     };
   }
   return undefined;
