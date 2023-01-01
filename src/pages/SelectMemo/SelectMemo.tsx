@@ -69,6 +69,7 @@ const SelectMemo = memo((props) => {
           style={{
             fontFamily: '"Gowun Dodum',
             backgroundColor: !selectedColor ? "" : "#38393b",
+            marginTop: "30px",
           }}
         >
           다음으로

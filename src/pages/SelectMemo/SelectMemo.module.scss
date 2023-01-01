@@ -1,7 +1,9 @@
 .memoDiv {
-  width: 35%;
-  height: 180px;
+  width: 39vw;
+  height: 22vh;
   margin: 10px;
+  max-width: 180px;
+  max-height: 250px;
 
   &:hover {
     transform: scale(1.1);
@@ -13,20 +15,21 @@
 }
 
 .MemoWrapper {
-  height: 90%;
+  height: 75vh;
   display: flex;
   order: 3;
   flex-wrap: wrap;
   justify-content: space-around;
   overflow-y: auto;
-  padding: 30px 0 60px;
+  padding: 30px 10px 60px;
 }
 .nextBtnWrapper {
   text-align: center;
-  position: relative;
-  bottom: 160px;
+  position: fixed;
+  bottom: 0px;
   width: 100%;
-  height: 140px;
+  max-width: 516px;
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
