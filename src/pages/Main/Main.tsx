@@ -12,6 +12,7 @@ import AddButtonImg from "images/like.png";
 import { usePopupManager } from "react-popup-manager";
 import StickerListModal from "./StickerListModal";
 import { fabric } from "fabric";
+import DownloadImg from "image/file.png";
 import {
   generateCanvas,
   getParentElSize,
@@ -98,6 +99,8 @@ const Main = () => {
   const onCreateNewRP = React.useCallback(() => {
     navigate(getPath(PathTitles.Landing));
   }, []);
+
+  const onDownloadPng = React.useCallback(() => {}, []);
 
   const onAddSticker = React.useCallback(() => {
     open(StickerListModal, {
@@ -221,15 +224,27 @@ const Main = () => {
         <canvas id="main"></canvas>
         <div className={styles.buttonWrapper}>
           {user?.image && (
-            <div className={styles.addButtonWrapper}>
-              <Button className={styles.addbutton}>
-                <img
-                  src={AddButtonImg}
-                  alt="AddButtonImg"
-                  width={40}
-                  onClick={onAddSticker}
-                />
-              </Button>
+            <div className={styles.iconButtonWrapper}>
+              <div className={styles.addButtonWrapper}>
+                <Button className={styles.addbutton}>
+                  <img
+                    src={DownloadImg}
+                    alt="downloadImg"
+                    width={40}
+                    onClick={onDownloadPng}
+                  />
+                </Button>
+              </div>
+              <div className={styles.addButtonWrapper}>
+                <Button className={styles.addbutton}>
+                  <img
+                    src={AddButtonImg}
+                    alt="AddButtonImg"
+                    width={40}
+                    onClick={onAddSticker}
+                  />
+                </Button>
+              </div>
             </div>
           )}
 

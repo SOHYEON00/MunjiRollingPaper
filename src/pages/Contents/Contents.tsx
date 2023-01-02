@@ -52,7 +52,7 @@ const Contents = memo(() => {
             defaultValue={text}
             onChange={onChangeText}
             className={styles.textArea}
-            style={{ backgroundColor: color, resize: "none", height: "57vh" }}
+            style={{ backgroundColor: color, resize: "none", height: "54vh" }}
           />
         </div>
 
