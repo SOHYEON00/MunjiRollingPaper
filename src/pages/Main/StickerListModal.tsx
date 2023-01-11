@@ -6,6 +6,7 @@ import { storage } from "queries/firebaseConfig";
 import { storagePath } from "queries/firebaseQuery";
 import "./StickerListModal.scss";
 import { getDefaultsImage, saveLocalStorage } from "share/utils";
+import LoadingModal from "common/components/LoadingModal/LoadingModal";
 
 interface StickerListModalProps extends ModalProps, PopupProps {
   contents?: string | React.ReactNode;
@@ -24,6 +25,7 @@ const StickerListModal = memo(
     ...props
   }: StickerListModalProps) => {
     const [list, setList] = useState<string[]>([]);
+    const [loaded, setLoaded] = useState<boolean>(false);
 
     /* ************** UseEffects ************** */
     useEffect(() => {
@@ -31,9 +33,12 @@ const StickerListModal = memo(
 
       if (!getList) {
         promiseResolver();
+        setLoaded(true);
       } else {
         setList(JSON.parse(getList));
+        setLoaded(true);
       }
+
       promiseResolver();
 
       return () => {
@@ -42,6 +47,7 @@ const StickerListModal = memo(
     }, []);
 
     function promiseResolver() {
+      setLoaded(false);
       const stroageRef = ref(storage, `${storagePath}`);
       return listAll(stroageRef).then((result) => {
         const promise = result.items.map((imgRef) =>
@@ -52,6 +58,7 @@ const StickerListModal = memo(
           .then((arr) => {
             setList(arr);
             saveLocalStorage("list", JSON.stringify(arr));
+            setLoaded(true);
           })
           .catch((e) => {
             console.log("catch", e);
@@ -94,21 +101,25 @@ const StickerListModal = memo(
         className={"StickerListModal"}
         {...props}
       >
-        <div className={"stickerList"}>
-          {list?.map((sticker, index) => {
-            const key = `${sticker}${index}`;
-            return (
-              <img
-                src={sticker}
-                alt={key}
-                height={"auto"}
-                className={"sticker"}
-                key={key}
-                onClick={onSelectSticker}
-              />
-            );
-          })}
-        </div>
+        {loaded ? (
+          <div className={"stickerList"}>
+            {list?.map((sticker, index) => {
+              const key = `${sticker}${index}`;
+              return (
+                <img
+                  src={sticker}
+                  alt={key}
+                  height={"auto"}
+                  className={"sticker"}
+                  key={key}
+                  onClick={onSelectSticker}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <LoadingModal />
+        )}
       </Modal>
     );
   }
