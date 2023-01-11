@@ -21,16 +21,16 @@ const LoadingModal = () => {
   };
 
   return (
-    <div className={styles.LoadingModal}>
-      <div className={styles.contents}>
-        <div className={styles.text}>{randomText[getRandomInt()]}</div>
+    // <div className={styles.LoadingModal}>
+    <div className={styles.contents}>
+      <div className={styles.text}>{randomText[getRandomInt()]}</div>
 
-        <div>
-          <img src={Munji_GIF} alt="loading..." width={80} />
-        </div>
-        <span className={styles.loadingText}>Loading......</span>
+      <div>
+        <img src={Munji_GIF} alt="loading..." width={80} />
       </div>
+      <span className={styles.loadingText}>Loading......</span>
     </div>
+    // </div>
   );
 };
 
