@@ -10,7 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { usePopupManager } from "react-popup-manager";
 import CustomModal from "common/components/CustomModal/CustomModal";
 import { User } from "store/memoSlice";
-import { generateCanvas, getParentElSize, zoomValue } from "share/utils";
+import { getParentElSize, zoomValue } from "share/utils";
 
 const ContentsPosition = memo(() => {
   const initUser = useUser();
@@ -52,14 +52,21 @@ const ContentsPosition = memo(() => {
 
   useEffect(() => {
     if (canvas) {
-      createMemoPic();
-
       if (!!initUser?.image) {
-        canvas.current.setBackgroundImage(
-          initUser.image,
-          canvas.current.renderAll.bind(canvas)
-        );
+        canvas.current = canvas.current.loadFromJSON(initUser.image, (arg) => {
+          const objects = canvas.current.getObjects();
+
+          objects.forEach((obj) => {
+            obj.lockMovementX = true;
+            obj.lockMovementY = true;
+            obj.selectable = false;
+            obj.hasControls = false;
+          });
+
+          createMemoPic();
+        });
       }
+      createMemoPic();
     }
 
     return () => {
@@ -112,7 +119,7 @@ const ContentsPosition = memo(() => {
 
   const onSaveRP = useCallback(async () => {
     if (canvas && params?.id) {
-      const url = await generateCanvas(canvas.current);
+      const url = JSON.stringify(canvas.current.toJSON());
 
       await setUserImage(params.id, { image: url }).then((res) => {
         open(CustomModal, {

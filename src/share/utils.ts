@@ -8,21 +8,6 @@ export const getDefaultsImage = (key: string) => {
   return localStorage.getItem(key);
 };
 
-export const generateCanvas = async (canvas) => {
-  canvas.setZoom(1);
-  await canvas.requestRenderAll();
-
-  const url = await canvas.toDataURL({
-    width: canvas.width,
-    height: canvas.height,
-    left: 0,
-    top: 0,
-    format: "png",
-  });
-
-  return url;
-};
-
 export const getParentElSize = (
   id: string
 ): { height: number; width: number } => {
