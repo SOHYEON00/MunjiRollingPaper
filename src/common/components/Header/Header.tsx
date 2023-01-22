@@ -23,13 +23,13 @@ const Header = memo((props) => {
 
   return (
     <section className={styles.Header}>
-      <div className={styles.goBackBtnWrapper}>
+      {/* <div className={styles.goBackBtnWrapper}>
         {isBackIcon && (
           <button onClick={onGoBack}>
             <img src={BackIcon} alt="go back button" />
           </button>
         )}
-      </div>
+      </div> */}
       {/* <div className={styles.Title} onClick={onGoToMain}>
         먼지 롤링 페이퍼
       </div> */}
