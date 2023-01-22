@@ -14,9 +14,9 @@ import StickerListModal from "./StickerListModal";
 import { fabric } from "fabric";
 import DownloadImg from "image/file.png";
 import {
+  bringToFront,
   CanvasHeight,
   CanvasWidth,
-  generateCanvas,
   getParentElSize,
   setFabricImageDelControl,
   zoomValue,
@@ -54,15 +54,19 @@ const Main = () => {
         allowTouchScrolling: true,
       });
 
-      setFabricImageDelControl();
-
       newCanvas.setZoom(zoomValue);
-      newCanvas.setBackgroundImage(
-        user.image,
-        newCanvas.renderAll.bind(newCanvas)
-      );
 
-      canvas.current = newCanvas;
+      canvas.current = newCanvas.loadFromJSON(user.image, (arg) => {
+        const objects = newCanvas.getObjects();
+
+        objects.forEach((obj) => {
+          obj.lockMovementX = true;
+          obj.lockMovementY = true;
+          obj.selectable = false;
+          obj.hasControls = false;
+        });
+      });
+      canvas.current.renderAll();
     }
   }, [user?.image]);
 
@@ -73,6 +77,24 @@ const Main = () => {
       }
     };
   }, []);
+
+  React.useEffect(() => {
+    if (canvas.current) {
+      const objects = canvas.current.getObjects();
+      setFabricImageDelControl();
+
+      objects.forEach((obj) => {
+        if (obj.type === "image") {
+          obj.lockMovementX = false;
+          obj.lockMovementY = false;
+          obj.selectable = true;
+          obj.hasControls = true;
+        }
+        obj.selectable = true;
+        canvas.current.renderAll();
+      });
+    }
+  }, [isEditSticker]);
 
   /* ************** Get User Logics ************** */
 
@@ -114,8 +136,6 @@ const Main = () => {
     };
 
     canvas.current.backgroundColor = "white";
-
-    // const url = generateCanvas(canvas.current);
 
     canvas.current.setZoom(1);
     await canvas.current.requestRenderAll();
@@ -159,7 +179,7 @@ const Main = () => {
   }, []);
 
   const onFinishEditDeco = React.useCallback(async () => {
-    const url = await generateCanvas(canvas.current);
+    const url = JSON.stringify(canvas.current.toJSON());
 
     canvas.current.discardActiveObject();
     canvas.current.renderAll();

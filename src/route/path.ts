@@ -31,6 +31,7 @@ export const paths: PathType[] = [
     title: PathTitles.Main,
     url: "/main/:id",
     Component: lazy(() => import("../pages/Main/Main")),
+    isBack: false,
   },
   {
     key: "/main/memo/:id",
