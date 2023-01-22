@@ -38,11 +38,21 @@
     flex-direction: column;
     max-width: 516px;
 
+    .nextInfo {
+      font-size: 13px;
+      display: flex;
+      margin-bottom: 10px;
+      flex-direction: column;
+      color: red;
+      font-family: '"Gowun Dodum';
+    }
+
     .iconButtonWrapper {
       display: flex;
       justify-content: space-between;
       position: fixed;
       width: 100%;
+      max-width: 516px;
     }
 
     .addButtonWrapper {
