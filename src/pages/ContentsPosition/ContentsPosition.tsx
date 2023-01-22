@@ -112,7 +112,7 @@ const ContentsPosition = memo(() => {
 
   const onSaveRP = useCallback(async () => {
     if (canvas && params?.id) {
-      const url = generateCanvas(canvas.current);
+      const url = await generateCanvas(canvas.current);
 
       await setUserImage(params.id, { image: url }).then((res) => {
         open(CustomModal, {

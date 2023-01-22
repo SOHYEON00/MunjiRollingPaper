@@ -14,6 +14,8 @@ import StickerListModal from "./StickerListModal";
 import { fabric } from "fabric";
 import DownloadImg from "image/file.png";
 import {
+  CanvasHeight,
+  CanvasWidth,
   generateCanvas,
   getParentElSize,
   setFabricImageDelControl,
@@ -41,12 +43,13 @@ const Main = () => {
 
   React.useEffect(() => {
     if (!!user?.image) {
+      // canvas setting
+
       const size = getParentElSize("main");
 
-      // canvas setting
       const newCanvas = new fabric.Canvas("main", {
-        height: size.height,
-        width: size.width,
+        height: size.height || CanvasHeight,
+        width: size.width || CanvasWidth,
         enableRetinaScaling: true,
         allowTouchScrolling: true,
       });
@@ -100,7 +103,34 @@ const Main = () => {
     navigate(getPath(PathTitles.Landing));
   }, []);
 
-  const onDownloadPng = React.useCallback(() => {}, []);
+  const onDownloadPng = React.useCallback(async () => {
+    const downloadURI = (uri, name) => {
+      const link = document.createElement("a");
+      link.download = name;
+      link.href = uri;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+
+    canvas.current.backgroundColor = "white";
+
+    // const url = generateCanvas(canvas.current);
+
+    canvas.current.setZoom(0.6);
+    await canvas.current.requestRenderAll();
+
+    const url = await canvas.current.toDataURL({
+      width: canvas.current.width * zoomValue,
+      height: canvas.current.height * zoomValue,
+      left: 0,
+      top: 0,
+      format: "png",
+      quality: 1.0,
+    });
+
+    await downloadURI(url, "Mungi_rolling_paper.png");
+  }, []);
 
   const onAddSticker = React.useCallback(() => {
     open(StickerListModal, {
@@ -129,7 +159,7 @@ const Main = () => {
   }, []);
 
   const onFinishEditDeco = React.useCallback(async () => {
-    const url = generateCanvas(canvas.current);
+    const url = await generateCanvas(canvas.current);
 
     canvas.current.discardActiveObject();
     canvas.current.renderAll();
@@ -226,21 +256,23 @@ const Main = () => {
           {user?.image && (
             <div className={styles.iconButtonWrapper}>
               <div className={styles.addButtonWrapper}>
-                <Button className={styles.addbutton}>
-                  <img
-                    src={DownloadImg}
-                    alt="downloadImg"
-                    width={40}
-                    onClick={onDownloadPng}
-                  />
-                </Button>
+                {!isEditSticker && (
+                  <Button className={styles.addbutton}>
+                    <img
+                      src={DownloadImg}
+                      alt="downloadImg"
+                      width={30}
+                      onClick={onDownloadPng}
+                    />
+                  </Button>
+                )}
               </div>
               <div className={styles.addButtonWrapper}>
                 <Button className={styles.addbutton}>
                   <img
                     src={AddButtonImg}
                     alt="AddButtonImg"
-                    width={40}
+                    width={30}
                     onClick={onAddSticker}
                   />
                 </Button>

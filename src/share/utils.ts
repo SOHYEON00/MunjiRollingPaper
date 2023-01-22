@@ -8,11 +8,11 @@ export const getDefaultsImage = (key: string) => {
   return localStorage.getItem(key);
 };
 
-export const generateCanvas = (canvas) => {
+export const generateCanvas = async (canvas) => {
   canvas.setZoom(1);
-  canvas.requestRenderAll();
+  await canvas.requestRenderAll();
 
-  const url = canvas.toDataURL({
+  const url = await canvas.toDataURL({
     width: canvas.width,
     height: canvas.height,
     left: 0,
@@ -39,7 +39,7 @@ export const getParentElSize = (
 
 export const CanvasWidth = 838.5;
 export const CanvasHeight = 1625;
-export const zoomValue = 0.6;
+export const zoomValue = 0.5;
 
 export const setFabricImageDelControl = () => {
   const deleteImg = document.createElement("img");
