@@ -14,7 +14,6 @@ import StickerListModal from "./StickerListModal";
 import { fabric } from "fabric";
 import DownloadImg from "image/file.png";
 import {
-  bringToFront,
   CanvasHeight,
   CanvasWidth,
   getParentElSize,
@@ -128,7 +127,7 @@ const Main = () => {
   const onDownloadPng = React.useCallback(async () => {
     const downloadURI = (uri, name) => {
       const link = document.createElement("a");
-      link.download = name;
+      link.download = `${user?.name}_Rolling Paper.png`;
       link.href = uri;
       document.body.appendChild(link);
       link.click();
@@ -137,12 +136,12 @@ const Main = () => {
 
     canvas.current.backgroundColor = "white";
 
-    canvas.current.setZoom(1);
+    canvas.current.setZoom(2);
     await canvas.current.requestRenderAll();
 
     const url = await canvas.current.toDataURL({
-      width: canvas.current.width * 0.6,
-      height: canvas.current.height * 0.6,
+      width: canvas.current.width * 1.35,
+      height: canvas.current.height * 1.35,
       left: 0,
       top: 0,
       format: "png",
@@ -150,7 +149,7 @@ const Main = () => {
     });
 
     await downloadURI(url, "Mungi_rolling_paper.png");
-  }, []);
+  }, [user?.name]);
 
   const onAddSticker = React.useCallback(() => {
     open(StickerListModal, {
@@ -272,7 +271,13 @@ const Main = () => {
           {user ? <UserImageInfo userProps={user} /> : <ErrorInfo />}
         </div>
         <canvas id="main"></canvas>
+
         <div className={styles.buttonWrapper}>
+          {user?.image && !isEditSticker && (
+            <div className={styles.nextInfo}>
+              이미지 다운로드는 크롬 또는 사파리에서 진행해주세요!
+            </div>
+          )}
           {user?.image && (
             <div className={styles.iconButtonWrapper}>
               <div className={styles.addButtonWrapper}>

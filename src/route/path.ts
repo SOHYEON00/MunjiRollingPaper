@@ -38,18 +38,21 @@ export const paths: PathType[] = [
     title: PathTitles.Memo,
     url: "/main/memo/:id",
     Component: lazy(() => import("../pages/SelectMemo/SelectMemo")),
+    isBack: false,
   },
   {
     key: "/main/contents/:id",
     title: PathTitles.Contents,
     url: "/main/contents/:id",
     Component: lazy(() => import("../pages/Contents/Contents")),
+    isBack: false,
   },
   {
     key: "/main/contents/position/:id",
     title: PathTitles.Contents_Position,
     url: "/main/contents/position/:id",
     Component: lazy(() => import("../pages/ContentsPosition/ContentsPosition")),
+    isBack: false,
   },
 ];
 
