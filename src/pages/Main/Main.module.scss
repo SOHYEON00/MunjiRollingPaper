@@ -41,11 +41,14 @@
     .iconButtonWrapper {
       display: flex;
       justify-content: space-between;
+      position: fixed;
+      width: 100%;
     }
 
     .addButtonWrapper {
       display: flex;
       justify-content: end;
+      box-shadow: none;
 
       .addbutton {
         width: 61px;
@@ -56,6 +59,7 @@
         justify-content: center;
         border: none;
         background: none;
+        box-shadow: none;
       }
     }
   }
