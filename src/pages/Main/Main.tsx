@@ -117,12 +117,12 @@ const Main = () => {
 
     // const url = generateCanvas(canvas.current);
 
-    canvas.current.setZoom(0.6);
+    canvas.current.setZoom(1);
     await canvas.current.requestRenderAll();
 
     const url = await canvas.current.toDataURL({
-      width: canvas.current.width * zoomValue,
-      height: canvas.current.height * zoomValue,
+      width: canvas.current.width * 0.6,
+      height: canvas.current.height * 0.6,
       left: 0,
       top: 0,
       format: "png",
