@@ -34,12 +34,12 @@ const Help = () => {
           </section>
 
           <section className={styles.worker}>
-            <div style={{ fontWeight: 600 }}>Thanks to</div>
+            <div style={{ fontWeight: 600 }}>We works with...</div>
             <div>
               <span>Developer</span> <span>Amy Oh</span>
             </div>
             <div>
-              <span>Designer</span> <span>미야</span>
+              <span>Designer</span> <span>Miya</span>
             </div>
           </section>
         </div>
