@@ -1,0 +1,28 @@
+.Container {
+  height: 100%;
+
+  .subContainer {
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .infoSection {
+    margin: 20px 0 40px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: "Gowun Dodum";
+  }
+
+  .askWrapper {
+    margin: 20px 0 40px;
+    font-size: 17px;
+  }
+
+  .worker {
+    width: 210px;
+    font-size: 17px;
+  }
+}

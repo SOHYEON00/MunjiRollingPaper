@@ -20,6 +20,18 @@
     }
   }
 
+  .helper {
+    .helpIcon {
+      width: 30px;
+      filter: saturate(10%) contrast(800%) brightness(200%) invert(50%)
+        sepia(0%) hue-rotate(3deg);
+    }
+
+    .helpIcon:hover {
+      cursor: pointer;
+    }
+  }
+
   .Title {
     font-size: 30px;
     width: 100%;

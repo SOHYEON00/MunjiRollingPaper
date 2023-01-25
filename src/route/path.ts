@@ -15,6 +15,7 @@ export enum PathTitles {
   Memo = "Memo",
   Contents = "Contents",
   Contents_Position = "Contents_Position",
+  Help = "Help",
 }
 
 export const paths: PathType[] = [
@@ -52,6 +53,13 @@ export const paths: PathType[] = [
     title: PathTitles.Contents_Position,
     url: "/main/contents/position/:id",
     Component: lazy(() => import("../pages/ContentsPosition/ContentsPosition")),
+    isBack: false,
+  },
+  {
+    key: "/help",
+    title: PathTitles.Help,
+    url: "/help",
+    Component: lazy(() => import("../pages/Help/Help")),
     isBack: false,
   },
 ];

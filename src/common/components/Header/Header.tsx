@@ -2,6 +2,7 @@ import React, { memo, useCallback } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { GetHeaderInfo, getPath, PathTitles } from "route/path";
 import BackIcon from "images/back_icon.png";
+import HelpIcon from "image/help.png";
 import { Button } from "antd";
 import styles from "./Header.module.scss";
 import HeaderIcon from "image/header2.png";
@@ -21,15 +22,24 @@ const Header = memo((props) => {
     navigation(getPath(PathTitles.Landing));
   }, []);
 
+  const onMoveHelper = useCallback(() => {
+    navigation(getPath(PathTitles.Help));
+  }, []);
+
   return (
     <section className={styles.Header}>
-      {/* <div className={styles.goBackBtnWrapper}>
-        {isBackIcon && (
+      <div className={styles.goBackBtnWrapper}>
+        {/*    {isBackIcon && (
           <button onClick={onGoBack}>
             <img src={BackIcon} alt="go back button" />
           </button>
-        )}
-      </div> */}
+        )}*/}
+        <div className={styles.helper}>
+          <button onClick={onMoveHelper}>
+            <img className={styles.helpIcon} src={HelpIcon} alt="help button" />
+          </button>
+        </div>
+      </div>
       {/* <div className={styles.Title} onClick={onGoToMain}>
         먼지 롤링 페이퍼
       </div> */}

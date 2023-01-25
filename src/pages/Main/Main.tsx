@@ -95,6 +95,10 @@ const Main = () => {
     }
   }, [isEditSticker]);
 
+  React.useEffect(() => {
+    console.log("user", user);
+  }, [user]);
+
   /* ************** Get User Logics ************** */
 
   React.useEffect(() => {
@@ -278,46 +282,49 @@ const Main = () => {
               이미지 다운로드는 크롬 또는 사파리에서 진행해주세요!
             </div>
           )}
-          {user?.image && (
-            <div className={styles.iconButtonWrapper}>
-              <div className={styles.addButtonWrapper}>
-                {!isEditSticker && (
+          <div>
+            {user?.image && (
+              <div className={styles.iconButtonWrapper}>
+                <div className={styles.addButtonWrapper}>
+                  {!isEditSticker && (
+                    <Button className={styles.addbutton}>
+                      <img
+                        src={DownloadImg}
+                        alt="downloadImg"
+                        width={30}
+                        onClick={onDownloadPng}
+                      />
+                    </Button>
+                  )}
+                </div>
+                <div className={styles.addButtonWrapper}>
                   <Button className={styles.addbutton}>
                     <img
-                      src={DownloadImg}
-                      alt="downloadImg"
+                      className={styles.addbuttonIcon}
+                      src={AddButtonImg}
+                      alt="AddButtonImg"
                       width={30}
-                      onClick={onDownloadPng}
+                      onClick={onAddSticker}
                     />
                   </Button>
-                )}
+                </div>
               </div>
-              <div className={styles.addButtonWrapper}>
-                <Button className={styles.addbutton}>
-                  <img
-                    src={AddButtonImg}
-                    alt="AddButtonImg"
-                    width={30}
-                    onClick={onAddSticker}
-                  />
-                </Button>
-              </div>
-            </div>
-          )}
-
-          <div>
-            {isEditSticker && user?.image ? (
-              <Button
-                className={styles.createBtn}
-                style={{ backgroundColor: "#f890a2" }}
-                type="primary"
-                onClick={onFinishEditDeco}
-              >
-                롤링 페이퍼 꾸미기 완료하기
-              </Button>
-            ) : (
-              <ButtonUserInfo />
             )}
+
+            <div>
+              {isEditSticker && user?.image ? (
+                <Button
+                  className={styles.createBtn}
+                  style={{ backgroundColor: "#f890a2" }}
+                  type="primary"
+                  onClick={onFinishEditDeco}
+                >
+                  롤링 페이퍼 꾸미기 완료하기
+                </Button>
+              ) : (
+                <ButtonUserInfo />
+              )}
+            </div>
           </div>
         </div>
       </section>
